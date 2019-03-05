@@ -31,8 +31,13 @@
   },
   "homepage": "https://github.com/gpbl/react-day-picker",
   "peerDependencies": {
-    "moment": "^2.9.0",
-    "react": "~0.13.x"
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  },
+  "dependencies": {
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "prop-types": "^15.0.0"
   },
   "devDependencies": {
     "autoprefixer-loader": "^2.0.0",
@@ -43,7 +48,6 @@
     "css-loader": "^0.14.4",
     "jest-cli": "^0.4.5",
     "moment": "^2.10.3",
-    "react": "^0.13.3",
     "react-tap-event-plugin": "^0.1.7",
     "sass-loader": "1.0.2",
     "style-loader": "^0.12.3",

@@ -6,17 +6,21 @@ Object.defineProperty(exports, '__esModule', {
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _moment = require('moment');
 
@@ -25,6 +29,45 @@ var _moment2 = _interopRequireDefault(_moment);
 var _CalendarUtils = require('./CalendarUtils');
 
 var DayPicker = (function (_Component) {
+  _inherits(DayPicker, _Component);
+
+  _createClass(DayPicker, null, [{
+    key: 'propTypes',
+    value: {
+
+      enableOutsideDays: _propTypes2['default'].bool,
+
+      // default is current month
+      initialMonth: _propTypes2['default'].object,
+
+      // default is 1
+      numberOfMonths: _propTypes2['default'].number,
+
+      modifiers: _propTypes2['default'].object,
+
+      onDayClick: _propTypes2['default'].func,
+
+      // requires react-tap-event-plugin
+      onDayTouchTap: _propTypes2['default'].func,
+
+      onDayMouseEnter: _propTypes2['default'].func,
+      onDayMouseLeave: _propTypes2['default'].func,
+
+      onNextMonthClick: _propTypes2['default'].func,
+      onPrevMonthClick: _propTypes2['default'].func
+
+    },
+    enumerable: true
+  }, {
+    key: 'defaultProps',
+    value: {
+      initialMonth: (0, _moment2['default'])(),
+      numberOfMonths: 1,
+      enableOutsideDays: false
+    },
+    enumerable: true
+  }]);
+
   function DayPicker(props) {
     _classCallCheck(this, DayPicker);
 
@@ -33,8 +76,6 @@ var DayPicker = (function (_Component) {
       month: this.props.initialMonth.clone()
     };
   }
-
-  _inherits(DayPicker, _Component);
 
   _createClass(DayPicker, [{
     key: 'handleDayTouchTap',
@@ -168,7 +209,7 @@ var DayPicker = (function (_Component) {
       var className = 'DayPicker-nav DayPicker-nav--' + position;
       var handler = position === 'left' ? this.handlePrevMonthClick : this.handleNextMonthClick;
 
-      return _react2['default'].createElement('span', { ref: 'btn-' + position, className: className,
+      return _react2['default'].createElement('span', { ref: "btn-" + position, className: className,
         style: { float: position }, onClick: handler.bind(this) });
     }
   }, {
@@ -256,41 +297,6 @@ var DayPicker = (function (_Component) {
         );
       }
     }
-  }], [{
-    key: 'propTypes',
-    value: {
-
-      enableOutsideDays: _react.PropTypes.bool,
-
-      // default is current month
-      initialMonth: _react.PropTypes.object,
-
-      // default is 1
-      numberOfMonths: _react.PropTypes.number,
-
-      modifiers: _react.PropTypes.object,
-
-      onDayClick: _react.PropTypes.func,
-
-      // requires react-tap-event-plugin
-      onDayTouchTap: _react.PropTypes.func,
-
-      onDayMouseEnter: _react.PropTypes.func,
-      onDayMouseLeave: _react.PropTypes.func,
-
-      onNextMonthClick: _react.PropTypes.func,
-      onPrevMonthClick: _react.PropTypes.func
-
-    },
-    enumerable: true
-  }, {
-    key: 'defaultProps',
-    value: {
-      initialMonth: (0, _moment2['default'])(),
-      numberOfMonths: 1,
-      enableOutsideDays: false
-    },
-    enumerable: true
   }]);
 
   return DayPicker;

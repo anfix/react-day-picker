@@ -133,7 +133,7 @@ class DayPicker extends Component {
       <table key={monthIndex} className="DayPicker">
         <caption className="DayPicker-caption">
           { isFirstMonth && this.renderNavButton('left') }
-          { month.format('MMMM YYYY') }
+          <span>{ month.format('MMMM YYYY') }</span>
           { isLastMonth && this.renderNavButton('right') }
         </caption>
         <thead>

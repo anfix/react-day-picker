@@ -188,7 +188,11 @@ var DayPicker = (function (_Component) {
           'caption',
           { className: 'DayPicker-caption' },
           isFirstMonth && this.renderNavButton('left'),
-          month.format('MMMM YYYY'),
+          _react2['default'].createElement(
+            'span',
+            null,
+            month.format('MMMM YYYY')
+          ),
           isLastMonth && this.renderNavButton('right')
         ),
         _react2['default'].createElement(
